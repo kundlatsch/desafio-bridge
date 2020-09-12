@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import server.Calculator;
 import server.Factorial;
 import server.History;
 import server.Number;
@@ -23,17 +24,13 @@ public class FactorialController {
 		this.db = new History();
 	}
 
-  private int calcFactorial(int number) {
-    return 12;
-  }
-
 	@PostMapping("/factorial")
 	public int postFactorial(@RequestBody Number number) {
 		int n = number.getNumber();
-		int factorial = calcFactorial(n);
-		Factorial fac = new Factorial(n, factorial);
-		this.db.saveFactorial(fac);
-		return factorial;
+		int f = Calculator.factorial(n);
+		Factorial factorial = new Factorial(n, f);
+		this.db.saveFactorial(factorial);
+		return f;
 	}
 
 	@GetMapping("/history/{numberOfFacs}")
