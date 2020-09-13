@@ -9,7 +9,6 @@ import server.Factorial;
 import server.History;
 import server.Number;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,14 +24,14 @@ public class FactorialController {
 		this.db = new History();
 	}
 
-	@CrossOrigin(origins = "*")
 	@PostMapping("/factorial")
-	public Factorial postFactorial(@RequestBody Number number) {
+	public int postFactorial(@RequestBody Number number) {
 		int n = number.getNumber();
+		System.out.println(n);
 		int f = Calculator.factorial(n);
 		Factorial factorial = new Factorial(n, f);
 		this.db.saveFactorial(factorial);
-		return factorial;
+		return f;
 	}
 
 	@GetMapping("/history/{numberOfFacs}")
