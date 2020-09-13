@@ -15,8 +15,8 @@
   align-items: center;
 }
 
-#page-home .content header {
-  margin: 48px 0 0;
+#page-home .content .box {
+  height: 100px;
 }
 
 #page-home .content main {

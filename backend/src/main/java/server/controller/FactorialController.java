@@ -35,6 +35,7 @@ public class FactorialController {
 		return factorial;
 	}
 
+	@CrossOrigin(origins = "*")
 	@GetMapping("/history/{numberOfFacs}")
 	public ArrayList<Factorial> getHistory(@PathVariable int numberOfFacs) {
 		try {

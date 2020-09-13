@@ -7,14 +7,17 @@ import './styles.css';
 const Home = () => {
 
   const [factorialNumber, setFactorialNumber] = useState('');
-  const [result, setResult] = useState('Teste');
+  const [result, setResult] = useState('');
 
   async function handleSubmit(event) {
     event.preventDefault();
     
     const number = parseInt(factorialNumber);
-    if (isNaN(number)) {
+    if (isNaN(number) || number < 0) {
       setResult('Insira um número válido');
+    }
+    else if (number > 12) {
+      setResult('Nosso servidor não é capaz de calcular o fatorial desse número :(')
     }
     else {
       const response = await api.post('/factorial', { number });
@@ -27,9 +30,7 @@ const Home = () => {
   return (
     <div id="page-home">
       <div className="content">
-        <header>
-        </header>
-
+        <div className="box"></div>
         <main>
           <h2>
             Insira um número para calcular seu fatorial
